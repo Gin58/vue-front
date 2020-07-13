@@ -42,7 +42,7 @@ type Data = {
   isEntered: boolean,
 };
 
-export default {
+export default Vue.extend({
   data(): Data {
     return {
       products: [],
@@ -74,7 +74,7 @@ export default {
       });
     },
   },
-};
+});
 </script>
 <style scoped lang="scss">
 .alert-color {
