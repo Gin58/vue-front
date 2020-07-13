@@ -4,11 +4,11 @@ import axios from 'axios';
 
 Vue.use(Vuex);
 
-interface Product {
-  id: Number,
-  name: String,
-  memo: String,
-  state: Number
+export interface Product {
+  id: number;
+  name: string;
+  memo: string;
+  state: number;
 }
 
 export default new Vuex.Store({

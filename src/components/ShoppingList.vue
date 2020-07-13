@@ -27,20 +27,21 @@
 
 <script lang="ts">
 import axios from 'axios';
-import store from './../store';
+import { Product } from './../store';
 import { Component, Vue } from 'vue-property-decorator';
 type Data = {
-  products: [],
-  productName: String,
-  productMemo: String,
-  current: Number,
+  products: Product[],
+  productName: string,
+  productMemo: string,
+  current: number,
   options: [
-    {value: Number; label: String;},
-    {value: Number; label: String;},
-    {value: Number; label: String;},
+    {value: number; label: string; },
+    {value: number; label: string; },
+    {value: number; label: string; },
   ],
-  isEntered: Boolean
-}
+  isEntered: boolean,
+};
+
 export default {
   data(): Data {
     return {
@@ -51,30 +52,29 @@ export default {
       options: [
           { value: -1, label: 'すべて' },
           { value:  0, label: '未購入' },
-          { value:  1, label: '購入済' }
+          { value:  1, label: '購入済' },
       ],
-      isEntered: false
-    }
+      isEntered: false,
+    };
   },
   computed: {
   },
   mounted() {
-    this.doFetchAllProducts()
+    this.doFetchAllProducts();
   },
   methods: {
     doFetchAllProducts() {
       axios.get('http://localhost:8080/fetchAllProducts')
-      .then(res => {
-          if (res.status != 200) {
-              throw new Error('レスポンスエラー')
+      .then((res) => {
+          if (res.status !== 200) {
+              throw new Error('レスポンスエラー');
           } else {
-              let resultProducts = res.data
-              this.products = resultProducts
+              this.products = res.data;
           }
-      })
+      });
     },
-  }
-}
+  },
+};
 </script>
 <style scoped lang="scss">
 .alert-color {
